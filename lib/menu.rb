@@ -1,8 +1,8 @@
 class Menu
   attr_reader :menu_list
 
-  def initialize(menu_list)
-    @menu_list =  { salad: 1, burger: 3 }
+  def initialize
+    @menu_list = { salad: 1, burger: 3 }
   end
 
   def print

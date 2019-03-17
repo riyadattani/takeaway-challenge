@@ -1,7 +1,7 @@
 require 'menu'
 
 describe Menu do
-  subject(:menu) { described_class.new(menu_list) }
+  subject(:menu) { described_class.new }
 
   let(:menu_list) { { salad: 1, burger: 3 } }
 
