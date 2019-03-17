@@ -8,4 +8,8 @@ class Menu
   def print
     @menu_list.map { |dish, price| "#{dish.capitalize} £#{price}" }.join(", ")
   end
+
+  def has_dish?(dish)
+    !@menu_list[dish].nil?
+  end
 end
