@@ -1,9 +1,13 @@
-class Takeaway
-  attr_reader :menu, :order
+require 'order'
+require 'sms'
 
-  def initialize(menu:, order: nil)
+class Takeaway
+  attr_reader :menu, :order, :sms
+
+  def initialize(menu:, config:,order: nil, sms: nil)
     @menu = menu
-    @order = order
+    @order = order || Order.new(menu)
+    @sms = sms || SMS.new(config)
   end
 
   def show_menu
@@ -11,9 +15,16 @@ class Takeaway
   end
 
   def place_order(dishes)
+    add_dishes(dishes)
+    sms.deliver
+    order.total
+  end
+
+  private
+
+  def add_dishes(dishes)
     dishes.each do |dish, quantity|
       @order.add(dish, quantity)
     end
-    order.total
   end
 end
